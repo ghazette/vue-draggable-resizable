@@ -856,14 +856,14 @@ module.exports = function (it) {
 
 "use strict";
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"c09f8fd6-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-draggable-resizable.vue?vue&type=template&id=615cb6b6&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"4567ab05-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-draggable-resizable.vue?vue&type=template&id=82490412&
 var render = function () {
 var _obj;
 var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{class:[( _obj = {}, _obj[_vm.classNameActive] = _vm.enabled, _obj[_vm.classNameDragging] = _vm.dragging, _obj[_vm.classNameResizing] = _vm.resizing, _obj[_vm.classNameDraggable] = _vm.draggable, _obj[_vm.classNameResizable] = _vm.resizable, _obj ), _vm.className],style:(_vm.style),on:{"mousedown":_vm.elementMouseDown,"touchstart":_vm.elementTouchDown}},[_vm._l((_vm.actualHandles),function(handle){return _c('div',{key:handle,class:[_vm.classNameHandle, _vm.classNameHandle + '-' + handle],style:({display: _vm.enabled ? 'block' : 'none'}),on:{"mousedown":function($event){$event.stopPropagation();$event.preventDefault();_vm.handleDown(handle, $event)},"touchstart":function($event){$event.stopPropagation();$event.preventDefault();_vm.handleTouchDown(handle, $event)}}},[_vm._t(handle)],2)}),_vm._v(" "),_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/vue-draggable-resizable.vue?vue&type=template&id=615cb6b6&
+// CONCATENATED MODULE: ./src/components/vue-draggable-resizable.vue?vue&type=template&id=82490412&
 
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.object.define-property.js
 var es6_object_define_property = __webpack_require__("1c01");
@@ -975,9 +975,6 @@ var es6_array_filter = __webpack_require__("d25f");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
 var web_dom_iterable = __webpack_require__("ac6a");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.array.iterator.js
-var es6_array_iterator = __webpack_require__("cadf");
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.iterator.js
 var es6_string_iterator = __webpack_require__("5df3");
 
@@ -1085,7 +1082,6 @@ function removeEvent(el, event, handler) {
   }
 }
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/vue-draggable-resizable.vue?vue&type=script&lang=js&
-
 
 
 
@@ -1775,6 +1771,24 @@ var eventsFor = events.mouse;
       this.top = top;
       this.right = right;
       this.bottom = bottom;
+
+      if (this.right < 0 || this.left < 0) {
+        this.width += this.right + this.left;
+        this.left = 0;
+
+        if (this.width < this.minWidth) {
+          this.width = this.minWidth;
+        }
+      }
+
+      if (this.top < 0 || this.bottom < 0) {
+        this.height += this.top + this.bottom;
+        this.top = 0;
+
+        if (this.height < this.minHeight) {
+          this.height = this.minHeight;
+        }
+      }
     },
     handleResize: function handleResize(e) {
       var left = this.left;

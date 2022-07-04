@@ -302,7 +302,7 @@ export default {
         this.checkParentSize()
         this.handleParentResize()
       })
-		  this.parentResizeObserver.observe(this.$el.parentNode)
+      this.parentResizeObserver.observe(this.$el.parentNode)
     } else {
       // Fallback to standard event listener
       addEvent(window, 'resize', this.checkParentSize)
@@ -317,9 +317,9 @@ export default {
     removeEvent(document.documentElement, 'touchend touchcancel', this.deselect)
 
     if (this.parentResizeObserver) {
-        this.parentResizeObserver.disconnect()
+      this.parentResizeObserver.disconnect()
     } else {
-        removeEvent(window, 'resize', this.checkParentSize)
+      removeEvent(window, 'resize', this.checkParentSize)
     }
   },
 
@@ -641,9 +641,9 @@ export default {
       this.top = top
       this.bottom = this.parentHeight - this.height - top
     },
-    handleParentResize() {
+    handleParentResize () {
       const grid = this.grid
-      this.bounds = this.calcDragLimits();
+      this.bounds = this.calcDragLimits()
 
       const left = restrictToBounds(this.left, this.bounds.minLeft, this.bounds.maxLeft)
       const top = restrictToBounds(this.top, this.bounds.minTop, this.bounds.maxTop)
@@ -655,6 +655,22 @@ export default {
       this.top = top
       this.right = right
       this.bottom = bottom
+
+      if (this.right < 0 || this.left < 0) {
+        this.width += this.right + this.left
+        this.left = 0
+        if (this.width < this.minWidth) {
+          this.width = this.minWidth
+        }
+      }
+
+      if (this.top < 0 || this.bottom < 0) {
+        this.height += this.top + this.bottom
+        this.top = 0
+        if (this.height < this.minHeight) {
+          this.height = this.minHeight
+        }
+      }
     },
     handleResize (e) {
       let left = this.left
